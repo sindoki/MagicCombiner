@@ -11,11 +11,9 @@ namespace MagicCombiner.Services
     {
         public void TestFilter(ImageMap image)
         {
-            int add = 100;
-
             for (int x = 0; x < image.ResolutionX; x++) {
                 for (int y = 0; y < image.ResolutionY; y++) {
-                    image.Map[x, y] += add;
+                    image.Map[x, y] = (int)(image.Map[x, y] * 1.02);
                 }
             }
         }
