@@ -12,12 +12,12 @@ namespace MagicCombiner.Model
 
         public int ResolutionY { get; private set; }
 
-        public float[,] Map { get; private set; }
+        public int[,] Map { get; private set; }
 
         public ImageMap(int resolutuonX, int resolutionY) {
             ResolutionX = resolutuonX;
             ResolutionY = resolutionY;
-            Map = new float[ResolutionY, ResolutionX];
+            Map = new int[ResolutionX, ResolutionY];
         }
     }
 }

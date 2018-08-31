@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MagicCombiner.Model;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using System.Drawing.Imaging;
 
 namespace MagicCombiner.Services
 {
@@ -11,12 +14,71 @@ namespace MagicCombiner.Services
     {
         public ImageMap LoadImageFromFile(string filePath)
         {
-            throw new NotImplementedException();
+            Bitmap img = new Bitmap(filePath);
+            ImageMap result = new ImageMap(img.Width, img.Height);
+
+            for (int i = 0; i < img.Width; i++)
+            {
+                for (int j = 0; j < img.Height; j++)
+                {
+                    Color pixel = img.GetPixel(i, j);
+                    result.Map[i, j] = ToInt(pixel);
+                }
+            }
+
+            return result;
         }
 
         public void SaveImageToFile(string filePath, ImageMap imageMap)
         {
-            throw new NotImplementedException();
+            Bitmap img = new Bitmap(imageMap.ResolutionX, imageMap.ResolutionY, PixelFormat.Format24bppRgb);
+            for (int y = 0; y < imageMap.ResolutionY; y++)
+            {
+                for (int x = 0; x < imageMap.ResolutionX; x++)
+                {
+                    img.SetPixel(x, y, ToColor(imageMap.Map[x, y]));
+                }
+            }
+            img.Save(filePath);
         }
+
+        private int ToInt(Color pixel)
+        {
+            return pixel.ToArgb();
+        }
+
+        private Color ToColor(int value)
+        {
+            return Color.FromArgb(value);
+        }
+
+        private float ToFloat(Color pixel) {
+            CommonDenominatorBetweenColoursAndDoubles s;
+            s.AsFloat = 0;
+            s.R = pixel.R;
+            s.G = pixel.G;
+            s.B = pixel.B;
+
+            return s.AsFloat;
+        }
+
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct CommonDenominatorBetweenColoursAndDoubles
+    {
+
+        [FieldOffset(0)]
+        public byte R;
+        [FieldOffset(1)]
+        public byte G;
+        [FieldOffset(2)]
+        public byte B;
+
+        [FieldOffset(0)]
+        public float AsFloat;
+
+        [FieldOffset(0)]
+        public int AsInt;
     }
 }

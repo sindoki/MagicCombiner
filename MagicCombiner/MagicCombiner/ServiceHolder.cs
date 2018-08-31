@@ -11,8 +11,11 @@ namespace MagicCombiner
     {
         public IImageFileService ImageFileService { get; private set; }
 
+        public IImageFilterService ImageFilterService { get; private set; }
+
         public ServiceHolder() {
             ImageFileService = new ImageFileService();
+            ImageFilterService = new ImageFilterService();
         }
     }
 }

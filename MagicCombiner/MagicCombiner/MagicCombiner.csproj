@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,7 +48,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceHolder.cs" />
     <Compile Include="Services\IImageFileService.cs" />
+    <Compile Include="Services\IImageFilterService.cs" />
     <Compile Include="Services\ImageFileService.cs" />
+    <Compile Include="Services\ImageFilterService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
