@@ -16,6 +16,8 @@ namespace MagicCombiner.Model
 
         public float[,] ContrastMap { get; private set; }
 
+        public int[,] ContrastMapQuantified { get; private set; }
+
         public ImageMap(int resolutuonX, int resolutionY) {
             ResolutionX = resolutuonX;
             ResolutionY = resolutionY;
@@ -24,6 +26,7 @@ namespace MagicCombiner.Model
 
         public void ResetContrastMap() {
             ContrastMap = new float[ResolutionX, ResolutionY];
+            ContrastMapQuantified = new int[ResolutionX, ResolutionY];
         }
     }
 }

@@ -13,9 +13,12 @@ namespace MagicCombiner
 
         public IImageFilterService ImageFilterService { get; private set; }
 
+        public IContrastMapCalculator ContrastMapCalculator { get; private set; }
+
         public ServiceHolder() {
             ImageFileService = new ImageFileService();
             ImageFilterService = new ImageFilterService();
+            ContrastMapCalculator = new ContrastMapCalculator();
         }
     }
 }

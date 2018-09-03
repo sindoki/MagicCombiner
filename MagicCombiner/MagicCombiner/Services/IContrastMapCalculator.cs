@@ -13,6 +13,6 @@ namespace MagicCombiner.Services
         /// 
         /// </summary>
         /// <param name="sharpness">Доля изображения, рассматриваемая в качестве окрестности пикселя</param>
-        void CalculateContrastMap(ImageMap image, float sharpness);
+        void CalculateContrastMap(ImageMap image, float sharpness, int quantifier);
     }
 }
