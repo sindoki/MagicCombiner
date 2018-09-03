@@ -13,7 +13,7 @@ namespace MagicCombiner.Services
         {
             for (int x = 0; x < image.ResolutionX; x++) {
                 for (int y = 0; y < image.ResolutionY; y++) {
-                    image.Map[x, y] = (int)(image.Map[x, y] * 1.02);
+                    image.Map[x, y][1] += 10;
                 }
             }
         }

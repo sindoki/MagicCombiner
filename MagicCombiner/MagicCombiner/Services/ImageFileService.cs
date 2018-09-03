@@ -22,7 +22,7 @@ namespace MagicCombiner.Services
                 for (int j = 0; j < img.Height; j++)
                 {
                     Color pixel = img.GetPixel(i, j);
-                    result.Map[i, j] = ToInt(pixel);
+                    result.Map[i, j] = ToBytes(pixel);
                 }
             }
 
@@ -47,9 +47,19 @@ namespace MagicCombiner.Services
             return pixel.ToArgb();
         }
 
+        private byte[] ToBytes(Color pixel)
+        {
+            return new byte[] { pixel.A, pixel.R, pixel.G, pixel.B };
+        }
+
         private Color ToColor(int value)
         {
             return Color.FromArgb(value);
+        }
+
+        private Color ToColor(byte[] bytes)
+        {
+            return Color.FromArgb(bytes[0], bytes[1], bytes[2], bytes[3]);
         }
 
         private float ToFloat(Color pixel) {

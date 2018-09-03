@@ -12,12 +12,18 @@ namespace MagicCombiner.Model
 
         public int ResolutionY { get; private set; }
 
-        public int[,] Map { get; private set; }
+        public byte[,][] Map { get; private set; }
+
+        public float[,] ContrastMap { get; private set; }
 
         public ImageMap(int resolutuonX, int resolutionY) {
             ResolutionX = resolutuonX;
             ResolutionY = resolutionY;
-            Map = new int[ResolutionX, ResolutionY];
+            Map = new byte[ResolutionX, ResolutionY][]; //RGBA
+        }
+
+        public void ResetContrastMap() {
+            ContrastMap = new float[ResolutionX, ResolutionY];
         }
     }
 }
