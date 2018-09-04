@@ -15,6 +15,10 @@ namespace MagicCombiner.Services
 
             int windowX = (int)(image.ResolutionX * sharpness);
             int windowY = (int)(image.ResolutionY * sharpness);
+            if (windowX < 5)
+                windowX = 5;
+            if (windowY < 5)
+                windowY = 5;
 
             if (windowX % 2 == 0)
                 windowX++;
@@ -66,6 +70,8 @@ namespace MagicCombiner.Services
             for (int x = 0; x < image.ResolutionX; x++)
                 for (int y = 0; y < image.ResolutionY; y++) {
                     image.ContrastMapQuantified[x, y] = (int)(image.ContrastMap[x, y] / quant);
+                    if (image.ContrastMapQuantified[x, y] == quantifier)
+                        image.ContrastMapQuantified[x, y] = quantifier - 1;
                 }
         }
 

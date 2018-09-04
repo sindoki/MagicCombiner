@@ -7,6 +7,7 @@ using MagicCombiner.Model;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace MagicCombiner.Services
 {
@@ -42,6 +43,21 @@ namespace MagicCombiner.Services
             img.Save(filePath);
         }
 
+        public void SaveContrastToTextFile(string filePath, ImageMap imageMap)
+        {
+            if (imageMap.ContrastMapQuantified == null)
+                throw new Exception("Contrast map is not ready");
+
+            using (StreamWriter sw = new StreamWriter(filePath))
+                for (int y = 0; y < imageMap.ResolutionY; y++)
+                {
+                    for (int x = 0; x < imageMap.ResolutionX; x++)
+                        sw.Write(imageMap.ContrastMapQuantified[x,y]);
+                    if (y < imageMap.ResolutionY - 1)
+                        sw.WriteLine();
+                }
+        }
+
         private int ToInt(Color pixel)
         {
             return pixel.ToArgb();
@@ -71,7 +87,6 @@ namespace MagicCombiner.Services
 
             return s.AsFloat;
         }
-
     }
 
     [StructLayout(LayoutKind.Explicit)]

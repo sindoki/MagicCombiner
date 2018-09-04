@@ -12,5 +12,7 @@ namespace MagicCombiner.Services
         ImageMap LoadImageFromFile(string filePath);
 
         void SaveImageToFile(string filePath, ImageMap imageMap);
+
+        void SaveContrastToTextFile(string filePath, ImageMap imageMap);
     }
 }
